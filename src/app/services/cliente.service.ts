@@ -1,20 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Cliente } from "../interfaces/Cliente";
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClienteService {
+  private clienteUrl="";
+  constructor(private http:HttpClient){
 
-  constructor() { }
+  }
   clientes: Cliente[] = [
-    { id: "eueueue", nome: "yannsantana", telefone: "9393939" },
-    { id: "sjajsa", nome: "nayy", telefone: "121212" },
-    { id: "euwqiiq", nome: "anny", telefone: "213123" }
+    // { id: "eueueue", nome: "yannsantana", telefone: "9393939" },
+    // { id: "sjajsa", nome: "nayy", telefone: "121212" },
+    // { id: "euwqiiq", nome: "anny", telefone: "213123" }
   ];
 
-  listar(): Cliente[] {
-    return this.clientes;
+  listar(): Observable <Cliente[]> {
+    //return this.clientes;
+    return this.http.get<Cliente[]>(this.clienteUrl)as Observable<Cliente[]>;
+
   }
   remover(id: string) {
     const cliente = this.clientes.find(c => c.id == id);

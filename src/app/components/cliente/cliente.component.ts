@@ -45,10 +45,10 @@ export class ClienteComponent {
   }
 
   listar(): void {
-    this.clientes = this.clienteService.listar();
+    this.clienteService.listar().subscribe((item)=>(this.clientes=item));
   }
 
-  remover(id:string):void{
+  remover(id: string): void {
     this.clienteService.remover(id);
     alert("removidoComSUCESS!");
   }
