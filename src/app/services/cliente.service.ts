@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ClienteService {
-  private clienteUrl="";
-  constructor(private http:HttpClient){
+  private clienteUrl = "http://localhost:3000/clientes";
+  constructor(private http: HttpClient) {
 
   }
   clientes: Cliente[] = [
@@ -17,22 +17,22 @@ export class ClienteService {
     // { id: "euwqiiq", nome: "anny", telefone: "213123" }
   ];
 
-  listar(): Observable <Cliente[]> {
+    listar(): Observable<Cliente[]> {
     //return this.clientes;
-    return this.http.get<Cliente[]>(this.clienteUrl)as Observable<Cliente[]>;
+    return this.http.get<Cliente[]>(this.clienteUrl) as Observable<Cliente[]>;
 
   }
   remover(id: string) {
     const cliente = this.clientes.find(c => c.id == id);
     if (cliente) {
       const index = this.clientes.indexOf(cliente);
-      this.clientes.splice(index,1);
+      this.clientes.splice(index, 1);
 
     }
   }
 
-  add(cliente:Cliente){
+  add(cliente: Cliente) {
     this.clientes.push(cliente);
-    
+
   }
 }
