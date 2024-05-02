@@ -31,6 +31,15 @@ export class ClienteService {
     }
   }
 
+adicionar(cliente:Cliente){
+  const httpHeader={
+    headers:{
+      "Content-Type":"application/json"
+    }
+  };
+  return this.http.post(this.clienteUrl, cliente,httpHeader)
+};
+
   add(cliente: Cliente) {
     this.clientes.push(cliente);
 
